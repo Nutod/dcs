@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blockchain Demo</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css"
+      integrity="sha512-oc9+XSs1H243/FRN9Rw62Fn8EtxjEYWHXRvjS43YtueEewbS6ObfXcJNyohjHqVKFPoXXUxwc+q1K7Dee6vv9g=="
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+      integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/css/dataTables.bootstrap4.min.css"
+      integrity="sha512-PT0RvABaDhDQugEbpNMwgYBCnGCiTZMh9yOzUsJHDgl/dMhD9yjHAwoumnUk3JydV3QTcIkNDuN40CJxik5+WQ=="
+      crossorigin="anonymous"
+    />
+    <style>
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarsExample08"
+        aria-controls="navbarsExample08"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div
+        class="collapse navbar-collapse justify-content-md-center"
+        id="navbarsExample08"
+      >
+        <ul class="navbar-nav">
+          <li class="nav-item active">
+            <a class="nav-link"
+              >Blockchain Client<span class="sr-only">(current)</span></a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/">Wallet Generator</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="/make/transaction"
+              >Make Transaction</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/view/transactions">View Transactions</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <main role="main">
+      <section class="jumbotron text-center">
+        <div class="container">
+          <h2>Initiate Transaction</h2>
+          <p class="lead text-muted">
+            Input the necessary details to initiate a transaction
+          </p>
+        </div>
+      </section>
+
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <form id="transactionForm">
+              <div class="form-group">
+                <label for="senderPublicKey">Sender Public Key</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="senderPublicKey"
+                  name="senderPublicKey"
+                  placeholder="Sender Public Key"
+                />
+              </div>
+              <div class="form-group">
+                <label for="senderPrivateKey">Sender Private Key</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="senderPrivateKey"
+                  name="senderPrivateKey"
+                  placeholder="Sender Private Key"
+                />
+              </div>
+              <div class="form-group">
+                <label for="recipientAddress">Recipient Public Key</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="recipientAddress"
+                  name="recipientAddress"
+                  placeholder="Recipient Public Key"
+                />
+              </div>
+              <div class="form-group">
+                <label for="recipientAddress">Amount</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="amount"
+                  name="amount"
+                  placeholder="Amount"
+                />
+              </div>
+              <div class="text-center">
+                <button
+                  type="submit"
+                  class="btn btn-primary"
+                  id="initiateTransaction"
+                >
+                  Generate Transaction
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+    integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/jquery-serialize-object/2.5.0/jquery.serialize-object.min.js"
+    integrity="sha512-Gn0tSSjkIGAkaZQWjx3Ctl/0dVJuTmjW/f9QyB302kFjU4uTNP4HtA32U2qXs/TRlEsK5CoEqMEMs7LnzLOBsA=="
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/js/bootstrap.min.js"
+    integrity="sha512-8qmis31OQi6hIRgvkht0s6mCOittjMa9GMqtK9hes5iEQBQE/Ca6yGE5FsW36vyipGoWQswBj/QBm2JR086Rkw=="
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/js/jquery.dataTables.min.js"
+    integrity="sha512-BkpSL20WETFylMrcirBahHfSnY++H2O1W+UnEEO4yNIl+jI2+zowyoGJpbtk6bx97fBXf++WJHSSK2MV4ghPcg=="
+    crossorigin="anonymous"
+  ></script>
+  <script>
+    $(function () {
+      $("#transactionForm").on("submit", async event => {
+        try {
+          event.preventDefault()
+          const serialisedForm = $("#transactionForm").serializeObject()
+
+          const JSONResponse = await (
+            await fetch("http://127.0.0.1:8080/generate/transaction", {
+              method: "POST",
+              headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(serialisedForm),
+            })
+          ).json()
+
+          console.log(JSONResponse)
+        } catch (error) {
+          console.error(error)
+        }
+      })
+    })
+  </script>
+</html>
