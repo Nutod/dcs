@@ -1,10 +1,8 @@
-version: '3.4'
+version: "3.4"
 
 services:
-  taskone:
-    image: taskone
-    build:
-      context: .
-      dockerfile: ./Dockerfile
+  client:
+    image: client
+    build: ./services/client
     ports:
       - 8080:8080
