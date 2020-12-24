@@ -1,35 +1,42 @@
 from pyfiglet import Figlet
-import os
 from flask import Flask, request, render_template, jsonify
-import binascii
-from collections import OrderedDict
+from flask_sqlalchemy import SQLAlchemy
+from config import BaseConfig
+
 
 font = Figlet(font="starwars")
 
 
 app = Flask(__name__)
-
+app.config.from_object(BaseConfig)
+db = SQLAlchemy(app)
 print(font.renderText('SERVER RUNNING...'))
+
 
 @app.route('/')
 def index():
     return render_template('index.html')
 
+
 @app.route('/make/transaction')
 def make_transaction():
     return render_template('make_transaction.html')
+
 
 @app.route('/generate/transaction', methods=['POST'])
 def generate_transaction():
     pass
 
+
 @app.route('/view/transactions')
 def view_transactions():
     return render_template('view_transactions.html')
 
+
 @app.route('/wallet/new')
 def new_wallet():
     pass
+
 
 if __name__ == '__main__':
    from argparse import ArgumentParser
