@@ -13,6 +13,10 @@ db = SQLAlchemy(app)
 print(font.renderText('SERVER RUNNING...'))
 
 
+# This should not be in conflict with other imports
+from models import *
+
+
 @app.route('/')
 def index():
     return render_template('index.html')
