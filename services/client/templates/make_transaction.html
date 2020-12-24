@@ -147,28 +147,28 @@
     crossorigin="anonymous"
   ></script>
   <script>
-    $(function () {
-      $("#transactionForm").on("submit", async event => {
-        try {
-          event.preventDefault()
-          const serialisedForm = $("#transactionForm").serializeObject()
+    // $(function () {
+    //   $("#transactionForm").on("submit", async event => {
+    //     try {
+    //       event.preventDefault()
+    //       const serialisedForm = $("#transactionForm").serializeObject()
 
-          const JSONResponse = await (
-            await fetch("http://127.0.0.1:8080/generate/transaction", {
-              method: "POST",
-              headers: {
-                Accept: "application/json",
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify(serialisedForm),
-            })
-          ).json()
+    //       const JSONResponse = await (
+    //         await fetch("http://127.0.0.1:8080/generate/transaction", {
+    //           method: "POST",
+    //           headers: {
+    //             Accept: "application/json",
+    //             "Content-Type": "application/json",
+    //           },
+    //           body: JSON.stringify(serialisedForm),
+    //         })
+    //       ).json()
 
-          console.log(JSONResponse)
-        } catch (error) {
-          console.error(error)
-        }
-      })
-    })
+    //       console.log(JSONResponse)
+    //     } catch (error) {
+    //       console.error(error)
+    //     }
+    //   })
+    // })
   </script>
 </html>

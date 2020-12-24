@@ -1,24 +1,30 @@
 from pyfiglet import Figlet
-from flask import Flask, request, render_template, jsonify
+from flask import Flask
+from flask import request, render_template, jsonify
 from flask_sqlalchemy import SQLAlchemy
-from config import BaseConfig
+# from config import BaseConfig
 
 
 font = Figlet(font="starwars")
 
 
 app = Flask(__name__)
-app.config.from_object(BaseConfig)
-db = SQLAlchemy(app)
+# app.config.from_object(BaseConfig)
+# db = SQLAlchemy(app)
 print(font.renderText('SERVER RUNNING...'))
 
 
 # This should not be in conflict with other imports
-from models import *
+# from models import *
 
 
-@app.route('/')
+@app.route('/', methods=['POST', 'GET'])
 def index():
+    if request.method == 'POST':
+        senderPublicKey = request.form['senderPublicKey']
+        recipientAddress = request.form['recipientAddress']
+        amount = request.form['amount']
+        print(amount, senderPublicKey, recipientAddress)
     return render_template('index.html')
 
 

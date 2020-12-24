@@ -82,6 +82,74 @@
 
       <div class="container">
         <div class="row">
+          <div class="col-md-12">
+            <form id="transactionForm" action="/" method="POST">
+              <div class="form-group">
+                <label for="senderPublicKey">Sender Public Key</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="senderPublicKey"
+                  name="senderPublicKey"
+                  placeholder="Sender Public Key"
+                />
+              </div>
+              <div class="form-group">
+                <label for="recipientAddress">Recipient Public Key</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="recipientAddress"
+                  name="recipientAddress"
+                  placeholder="Recipient Public Key"
+                />
+              </div>
+              <div class="form-group">
+                <label for="recipientAddress">Amount</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="amount"
+                  name="amount"
+                  placeholder="Amount"
+                />
+              </div>
+              <div class="text-center">
+                <button
+                  type="submit"
+                  class="btn btn-primary"
+                  id="initiateTransaction"
+                >
+                  Generate Transaction
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div class="container">
+        <hr />
+
+        <div class="card">
+          <div class="card-body">
+            <p>This is some text within a card body.</p>
+            <p>This is some text within a card body.</p>
+            <p>This is some text within a card body.</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-body">
+            <p>This is some text within a card body.</p>
+            <p>This is some text within a card body.</p>
+            <p>This is some text within a card body.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- <div class="container">
+        <div class="row">
           <div class="col-md-6">
             <h4>Private Key:</h4>
             <textarea
@@ -115,7 +183,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
     </main>
   </body>
   <script
