@@ -66,7 +66,7 @@
     </nav>
 
     <main role="main">
-      <section class="jumbotron text-center">
+      <!-- <section class="jumbotron text-center">
         <div class="container">
           <h2>Wallet Generator</h2>
           <p class="lead text-muted">
@@ -78,12 +78,12 @@
             >
           </p>
         </div>
-      </section>
+      </section> -->
 
-      <div class="container">
+      <div class="container mt-5">
         <div class="row">
           <div class="col-md-12">
-            <form id="transactionForm" action="/" method="POST">
+            <form id="transactionForm" action="/make/transaction" method="POST">
               <div class="form-group">
                 <label for="senderPublicKey">Sender Public Key</label>
                 <input
@@ -130,22 +130,16 @@
 
       <div class="container">
         <hr />
-
+        {% for transaction in transactions %}
         <div class="card">
           <div class="card-body">
-            <p>This is some text within a card body.</p>
-            <p>This is some text within a card body.</p>
-            <p>This is some text within a card body.</p>
+            <p>{{transaction.sender}}</p>
+            <p>{{transaction.amount}}</p>
+            <p>{{transaction.reccipient}}</p>
+            <p>{{transaction.date_posted.strftime('%Y-%m-%d')}}</p>
           </div>
         </div>
-
-        <div class="card">
-          <div class="card-body">
-            <p>This is some text within a card body.</p>
-            <p>This is some text within a card body.</p>
-            <p>This is some text within a card body.</p>
-          </div>
-        </div>
+        {% endfor %}
       </div>
 
       <!-- <div class="container">

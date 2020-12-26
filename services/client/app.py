@@ -1,37 +1,41 @@
+import os
 from pyfiglet import Figlet
 from flask import Flask
-from flask import request, render_template, jsonify
-from flask_sqlalchemy import SQLAlchemy
-# from config import BaseConfig
+from flask import request, redirect, url_for, render_template, jsonify
+from pymongo import MongoClient
 
+client = MongoClient(
+    os.environ['DB_PORT_27017_TCP_ADDR'],
+    27017)
+db = client.testtransaction
 
 font = Figlet(font="starwars")
 
 
 app = Flask(__name__)
-# app.config.from_object(BaseConfig)
-# db = SQLAlchemy(app)
 print(font.renderText('SERVER RUNNING...'))
 
 
-# This should not be in conflict with other imports
-# from models import *
+
+@app.route('/', methods=['GET'])
+def index():   
+    _transactions = db.tododb.find()
+    transactions = [transaction for transaction in _transactions]
+
+    return render_template('index.html', transactions=transactions)
 
 
-@app.route('/', methods=['POST', 'GET'])
-def index():
-    if request.method == 'POST':
-        senderPublicKey = request.form['senderPublicKey']
-        recipientAddress = request.form['recipientAddress']
-        amount = request.form['amount']
-        print(amount, senderPublicKey, recipientAddress)
-    return render_template('index.html')
-
-
-@app.route('/make/transaction')
+@app.route('/make/transaction', methods=['POST'])
 def make_transaction():
-    return render_template('make_transaction.html')
+    transaction_doc = {
+        'senderPublicKey': request.form['senderPublicKey'],
+        'recipientAddress': request.form['recipientAddress'],
+        'amount': request.form['amount']
+    }
 
+    db.testtransaction.insert_one(transaction_doc)
+
+    return redirect(url_for('index'))
 
 @app.route('/generate/transaction', methods=['POST'])
 def generate_transaction():
