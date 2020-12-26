@@ -80,7 +80,7 @@
       <div class="container">
         <div class="row">
           <div class="col-md-12">
-            <form id="transactionForm">
+            <form id="transactionForm" action="/" method="POST">
               <div class="form-group">
                 <label for="senderPublicKey">Sender Public Key</label>
                 <input
@@ -89,16 +89,6 @@
                   id="senderPublicKey"
                   name="senderPublicKey"
                   placeholder="Sender Public Key"
-                />
-              </div>
-              <div class="form-group">
-                <label for="senderPrivateKey">Sender Private Key</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="senderPrivateKey"
-                  name="senderPrivateKey"
-                  placeholder="Sender Private Key"
                 />
               </div>
               <div class="form-group">
@@ -157,28 +147,28 @@
     crossorigin="anonymous"
   ></script>
   <script>
-    $(function () {
-      $("#transactionForm").on("submit", async event => {
-        try {
-          event.preventDefault()
-          const serialisedForm = $("#transactionForm").serializeObject()
+    // $(function () {
+    //   $("#transactionForm").on("submit", async event => {
+    //     try {
+    //       event.preventDefault()
+    //       const serialisedForm = $("#transactionForm").serializeObject()
 
-          const JSONResponse = await (
-            await fetch("http://127.0.0.1:8080/generate/transaction", {
-              method: "POST",
-              headers: {
-                Accept: "application/json",
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify(serialisedForm),
-            })
-          ).json()
+    //       const JSONResponse = await (
+    //         await fetch("http://127.0.0.1:8080/generate/transaction", {
+    //           method: "POST",
+    //           headers: {
+    //             Accept: "application/json",
+    //             "Content-Type": "application/json",
+    //           },
+    //           body: JSON.stringify(serialisedForm),
+    //         })
+    //       ).json()
 
-          console.log(JSONResponse)
-        } catch (error) {
-          console.error(error)
-        }
-      })
-    })
+    //       console.log(JSONResponse)
+    //     } catch (error) {
+    //       console.error(error)
+    //     }
+    //   })
+    // })
   </script>
 </html>
