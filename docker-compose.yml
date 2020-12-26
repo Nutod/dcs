@@ -3,7 +3,7 @@ version: "3.4"
 services:
   mongo:
     image: mongo
-    restart: unless-stopped
+    restart: always
     volumes:
       - mongodata:/data/db
 
@@ -13,8 +13,6 @@ services:
     build: ./services/client
     depends_on:
       - mongo
-    env_file:
-      - .env
     ports:
       - 8080:8080
 

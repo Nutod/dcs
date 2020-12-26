@@ -3,11 +3,10 @@ from pyfiglet import Figlet
 from flask import Flask
 from flask import request, redirect, url_for, render_template, jsonify
 from pymongo import MongoClient
+from bson.json_util import dumps
 
-client = MongoClient(
-    os.environ['DB_PORT_27017_TCP_ADDR'],
-    27017)
-db = client.testtransaction
+client = MongoClient('mongodb://mongo:27017/')
+db = client.tmptransactions
 
 font = Figlet(font="starwars")
 
@@ -15,11 +14,11 @@ font = Figlet(font="starwars")
 app = Flask(__name__)
 print(font.renderText('SERVER RUNNING...'))
 
-
+print(db)
 
 @app.route('/', methods=['GET'])
 def index():   
-    _transactions = db.tododb.find()
+    _transactions = db.tmptransactions.find().limit(10)
     transactions = [transaction for transaction in _transactions]
 
     return render_template('index.html', transactions=transactions)
@@ -33,7 +32,7 @@ def make_transaction():
         'amount': request.form['amount']
     }
 
-    db.testtransaction.insert_one(transaction_doc)
+    db.tmptransactions.insert_one(transaction_doc)
 
     return redirect(url_for('index'))
 

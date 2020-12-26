@@ -131,12 +131,11 @@
       <div class="container">
         <hr />
         {% for transaction in transactions %}
-        <div class="card">
+        <div class="card mb-2">
           <div class="card-body">
-            <p>{{transaction.sender}}</p>
-            <p>{{transaction.amount}}</p>
-            <p>{{transaction.reccipient}}</p>
-            <p>{{transaction.date_posted.strftime('%Y-%m-%d')}}</p>
+            <p>{{transaction['senderPublicKey']}}</p>
+            <!-- <p>{{transaction.amount}}</p>
+            <p>{{transaction.recipientAddress}}</p> -->
           </div>
         </div>
         {% endfor %}
