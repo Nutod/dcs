@@ -1,7 +1,5 @@
 # Tasks Implementing Docker
 
-## Task One
-
 ### Requirements
 
 1. Build a Docker Image
