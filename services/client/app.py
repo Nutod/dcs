@@ -14,8 +14,6 @@ font = Figlet(font="starwars")
 app = Flask(__name__)
 print(font.renderText('SERVER RUNNING...'))
 
-print(db)
-
 @app.route('/', methods=['GET'])
 def index():   
     _transactions = db.tmptransactions.find().limit(10)

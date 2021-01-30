@@ -134,8 +134,8 @@
         <div class="card mb-2">
           <div class="card-body">
             <p>{{transaction['senderPublicKey']}}</p>
-            <!-- <p>{{transaction.amount}}</p>
-            <p>{{transaction.recipientAddress}}</p> -->
+            <p>{{transaction['recipientAddress']}}</p>
+            <p>{{transaction['amount']}}</p>
           </div>
         </div>
         {% endfor %}
